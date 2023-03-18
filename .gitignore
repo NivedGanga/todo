@@ -43,4 +43,4 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 #keys
-lib\core\keys\keys.dart
+lib/core/keys/keys.dart

@@ -4,5 +4,5 @@ class UserModel {
   factory UserModel() {
     return instance;
   }
-  late final uid;
+  late String uid;
 }

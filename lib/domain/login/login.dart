@@ -3,8 +3,10 @@ import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:todo/infrastructure/list/list_repo.dart';
 import 'package:todo/infrastructure/user/model/user_model.dart';
 import 'package:todo/presentation/homepage/homepage.dart';
+import 'package:todo/presentation/loginpage/loginpage.dart';
 
 class Login {
   Login._internal();
@@ -32,6 +34,8 @@ class Login {
       log('Signed in user: ${user.uid}');
       final Sharedprefs = await SharedPreferences.getInstance();
       Sharedprefs.setString('uid', user.uid);
+      await ListRepo.instance.getLists();
+      log(ListRepo.instance.todoListTitles.toString());
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
             builder: (context) => HomePage(),
@@ -54,5 +58,17 @@ class Login {
     }
     loadingNotifier.value = false;
     loadingNotifier.notifyListeners();
+  }
+
+  signout({required context}) async {
+    final sharedprefs = await SharedPreferences.getInstance();
+    sharedprefs.clear();
+    UserModel.instance.uid = '';
+    await FirebaseAuth.instance.signOut();
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(
+          builder: (context) => LoginPage(),
+        ),
+        (route) => false);
   }
 }

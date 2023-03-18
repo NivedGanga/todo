@@ -18,8 +18,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'ToDo',
-      theme: ThemeData.dark(useMaterial3: true),
+      theme: ThemeData.from(
+          colorScheme: ColorScheme.dark(),
+          useMaterial3: true,
+          textTheme: TextTheme()),
       home: const SplashScreen(),
     );
   }

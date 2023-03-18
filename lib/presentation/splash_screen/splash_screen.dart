@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:todo/infrastructure/list/list_repo.dart';
 import 'package:todo/infrastructure/user/model/user_model.dart';
 import 'package:todo/presentation/homepage/homepage.dart';
 import 'package:todo/presentation/loginpage/loginpage.dart';
@@ -55,6 +56,7 @@ class _SplashScreenState extends State<SplashScreen> {
             Text(
               'Todo',
               style: TextStyle(
+                fontFamily: 'rightous',
                 fontSize: 58,
                 fontWeight: FontWeight.w900,
                 color: Colors.deepPurpleAccent,
@@ -82,6 +84,8 @@ Future<Widget> _splashfunction() async {
     return LoginPage();
   } else {
     UserModel.instance.uid = uid;
+    await ListRepo.instance.getLists();
+
     return HomePage();
   }
 }

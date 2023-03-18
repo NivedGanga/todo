@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:todo/infrastructure/list/list_repo.dart';
 import 'package:todo/infrastructure/list/model/list_model.dart';
+import 'package:todo/presentation/homepage/homepage.dart';
 
 class AddList extends StatelessWidget {
   AddList({super.key});
@@ -14,7 +15,7 @@ class AddList extends StatelessWidget {
         title: Text('Create new list'),
         actions: [
           TextButton(
-            onPressed: () {
+            onPressed: () async {
               FocusScope.of(context).unfocus();
               if (listTitleController.text == '') {
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -24,7 +25,12 @@ class AddList extends StatelessWidget {
               final list = ListModel(
                   id: DateTime.now().millisecondsSinceEpoch.toString(),
                   title: listTitleController.text.trim());
-              
+              await ListRepo.instance.addNewList(list: list);
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                    builder: (context) => HomePage(),
+                  ),
+                  (route) => false);
               log(list.toString());
             },
             child: Text('Done'),

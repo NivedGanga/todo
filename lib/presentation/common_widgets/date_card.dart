@@ -9,8 +9,13 @@ class DateCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-          side: BorderSide(width: 1, color: primaryColor)),
+          side: BorderSide(
+            width: 1,
+            color: date.compareTo(DateTime.now()) <= 0
+                ? Colors.red
+                : Colors.deepPurpleAccent,
+          ),
+          borderRadius: BorderRadius.circular(10)),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Text(

@@ -1,23 +1,39 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:todo/core/constants/constants.dart';
+import 'package:todo/infrastructure/list/list_repo.dart';
+import 'package:todo/infrastructure/list/model/list_model.dart';
+import 'package:todo/infrastructure/todos/model/todo_model.dart';
+import 'package:todo/infrastructure/todos/todos_repo.dart';
 import 'package:todo/presentation/common_widgets/date_card.dart';
 import 'package:todo/presentation/common_widgets/time_card.dart';
 
 final ValueNotifier<bool> _detailsNotifier = ValueNotifier(false);
 final ValueNotifier<bool> _dateNotifier = ValueNotifier(false);
 final ValueNotifier<bool> _timeNotifier = ValueNotifier(false);
-late DateTime? _date;
-late TimeOfDay? _time;
+DateTime? _date;
+TimeOfDay? _time;
 
 class AddTask extends StatefulWidget {
-  const AddTask({super.key});
-
+  AddTask({super.key, required this.index});
+  final int index;
   @override
   State<AddTask> createState() => _AddTaskState();
 }
 
 class _AddTaskState extends State<AddTask> {
+  final titleController = TextEditingController();
+  final subtitleController = TextEditingController();
+  late final ListModel list;
+
+  @override
+  void initState() {
+    list = ListRepo.instance.todoListTitles[widget.index];
+
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -29,6 +45,7 @@ class _AddTaskState extends State<AddTask> {
           Padding(
             padding: const EdgeInsets.all(18.0),
             child: TextFormField(
+              controller: titleController,
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: 'New task',
@@ -41,6 +58,7 @@ class _AddTaskState extends State<AddTask> {
                 ? Padding(
                     padding: const EdgeInsets.only(left: 20, right: 20, top: 0),
                     child: TextFormField(
+                      controller: subtitleController,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Add details',
@@ -97,26 +115,44 @@ class _AddTaskState extends State<AddTask> {
                 icon: Icon(Icons.calendar_today_outlined),
               ),
               kwidth10,
-              IconButton(
-                onPressed: () async {
-                  _time = await showTimePicker(
-                    context: context,
-                    initialTime: TimeOfDay.now(),
-                  );
-                  if (_time == null) {
-                    return;
-                  }
-                  _timeNotifier.value = true;
-                  log(_time!.format(context));
-                },
-                icon: Icon(Icons.access_time_rounded),
-              ),
+              ValueListenableBuilder(
+                  valueListenable: _dateNotifier,
+                  builder: (context, val, _) {
+                    return AnimatedScale(
+                      scale: val ? 1 : 0,
+                      duration: Duration(milliseconds: 400),
+                      child: IconButton(
+                        onPressed: () async {
+                          _time = await showTimePicker(
+                            context: context,
+                            initialTime: TimeOfDay.now(),
+                          );
+                          if (_time == null) {
+                            return;
+                          }
+                          _timeNotifier.value = true;
+                          log(_time!.toString());
+                        },
+                        icon: Icon(Icons.access_time_rounded),
+                      ),
+                    );
+                  }),
               Spacer(),
               TextButton(
-                onPressed: () {
-                  final pp = _date!.add(
-                      Duration(hours: _time!.hour, minutes: _time!.minute));
-                  log(pp.toString());
+                onPressed: () async {
+                  FocusScope.of(context).unfocus();
+                  final todo = TodoModel(
+                      id: DateTime.now().microsecondsSinceEpoch.toString(),
+                      title: titleController.text,
+                      subtitle: subtitleController.text == ''
+                          ? null
+                          : subtitleController.text,
+                      date: _date,
+                      time: _time);
+                  await TodosRepo.instance
+                      .addTodo(todo: todo, listModel: list, context: context);
+
+                  Navigator.pop(context);
                 },
                 child: Text(
                   'save',

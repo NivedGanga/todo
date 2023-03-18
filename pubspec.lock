@@ -9,6 +9,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.18"
+  animation_list:
+    dependency: "direct main"
+    description:
+      name: animation_list
+      sha256: "48aae726edd0853f8cacc4f39e8aac728179af95e5b048dfef9fb78b9121117a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.1"
   async:
     dependency: transitive
     description:
@@ -17,6 +25,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.10.0"
+  auto_animated_list:
+    dependency: "direct main"
+    description:
+      name: auto_animated_list
+      sha256: "474bb32c0da0956ab5083e78c87f23c77907bcac66140698e83f28b2a1b4b665"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.4"
+  automatic_animated_list:
+    dependency: "direct main"
+    description:
+      name: automatic_animated_list
+      sha256: b119bcde6af33d5c8bd839f9b6d0b6778be90f0ce4b412817bdfcf9f55780645
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -89,6 +113,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  diffutil_dart:
+    dependency: transitive
+    description:
+      name: diffutil_dart
+      sha256: e0297e4600b9797edff228ed60f4169a778ea357691ec98408fa3b72994c7d06
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0"
+  expandable:
+    dependency: "direct main"
+    description:
+      name: expandable
+      sha256: "9604d612d4d1146dafa96c6d8eec9c2ff0994658d6d09fed720ab788c7f5afc2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.1"
   fake_async:
     dependency: transitive
     description:
@@ -312,6 +352,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  popup_menu_2:
+    dependency: "direct main"
+    description:
+      name: popup_menu_2
+      sha256: c28887e776b3902783f366127667146d0882694e33c1185e1039ee5166acd48a
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.7"
   process:
     dependency: transitive
     description:

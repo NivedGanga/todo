@@ -7,6 +7,8 @@ import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo/core/keys/keys.dart';
+import 'package:todo/infrastructure/list/list_repo.dart';
+import 'package:todo/infrastructure/list/model/list_model.dart';
 import 'package:todo/infrastructure/user/model/user_model.dart';
 import 'package:todo/presentation/homepage/homepage.dart';
 
@@ -34,6 +36,9 @@ class SignUp {
       UserModel.instance.uid = user.uid;
       final Sharedprefs = await SharedPreferences.getInstance();
       Sharedprefs.setString('uid', user.uid);
+      await ListRepo.instance
+          .addNewList(list: ListModel(id: '0', title: 'MyTask'));
+      await ListRepo.instance.getLists();
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
             builder: (context) => HomePage(),

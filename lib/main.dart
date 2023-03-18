@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:todo/presentation/homepage/homepage.dart';
-import 'package:todo/presentation/loginpage/loginpage.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:todo/presentation/splash_screen/splash_screen.dart';
+import 'firebase_options.dart';
 import 'package:todo/presentation/signuppage/signuppage.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -15,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'ToDo',
       theme: ThemeData.dark(useMaterial3: true),
-      home: SignupPage(),
+      home: const SplashScreen(),
     );
   }
 }

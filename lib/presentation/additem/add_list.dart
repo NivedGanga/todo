@@ -1,8 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:todo/infrastructure/list/list_repo.dart';
+import 'package:todo/infrastructure/list/model/list_model.dart';
 
 class AddList extends StatelessWidget {
-  const AddList({super.key});
-
+  AddList({super.key});
+  final listTitleController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -10,12 +14,25 @@ class AddList extends StatelessWidget {
         title: Text('Create new list'),
         actions: [
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              FocusScope.of(context).unfocus();
+              if (listTitleController.text == '') {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('list title cannot be empty')));
+                return;
+              }
+              final list = ListModel(
+                  id: DateTime.now().millisecondsSinceEpoch.toString(),
+                  title: listTitleController.text.trim());
+              
+              log(list.toString());
+            },
             child: Text('Done'),
           ),
         ],
       ),
       body: TextFormField(
+        controller: listTitleController,
         decoration: InputDecoration(
           hintText: 'Enter list title',
           border: OutlineInputBorder(

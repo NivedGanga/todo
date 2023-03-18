@@ -1,9 +1,11 @@
-
 import 'package:flutter/material.dart';
 import 'package:todo/core/constants/constants.dart';
 
+final ValueNotifier<bool> _obscureTextNotifier = ValueNotifier(true);
+
 class IconAndField extends StatelessWidget {
-  IconAndField({super.key, 
+  IconAndField({
+    super.key,
     required this.size,
     required this.controller,
     this.isPass = false,
@@ -12,7 +14,7 @@ class IconAndField extends StatelessWidget {
   });
   final String text;
   final IconData iconData;
-  final ValueNotifier<bool> obscureTextNotifier = ValueNotifier(true);
+
   final Size size;
   final TextEditingController controller;
   final bool isPass;
@@ -27,18 +29,18 @@ class IconAndField extends StatelessWidget {
         SizedBox(
           width: size.width * 0.7,
           child: ValueListenableBuilder(
-              valueListenable: obscureTextNotifier,
+              valueListenable: _obscureTextNotifier,
               builder: (context, newValue, _) {
                 return TextFormField(
                   controller: controller,
-                  obscureText: newValue,
+                  obscureText: isPass ? newValue : false,
                   decoration: InputDecoration(
                     hintText: text,
                     suffix: isPass
                         ? GestureDetector(
                             onTap: () {
-                              obscureTextNotifier.value =
-                                  !obscureTextNotifier.value;
+                              _obscureTextNotifier.value =
+                                  !_obscureTextNotifier.value;
                             },
                             child: Icon(
                               newValue

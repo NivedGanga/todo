@@ -52,3 +52,7 @@ Tasks app uses Firebase Cloud Firestore as its backend, which allows for automat
 - firebase_core
 - mailer
 - shared_preferences
+
+# Tasks App
+
+[Download Tasks App](https://drive.google.com/file/d/12URVvJF5ZqfxTpDnyDEXLRWrI71fg-8I/view?usp=sharing)

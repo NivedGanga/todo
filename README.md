@@ -18,3 +18,14 @@ Tasks is a todo app built with Flutter that uses Firebase as the backend for dat
 - Flutter 2.5.3 or newer
 - Android Studio or Xcode
 - Firebase account
+
+# Dependecies Used
+
+- animation_list
+- checkmark
+- cloud_firestore
+- expandable
+- firebase_auth
+- firebase_core
+- mailer
+- shared_preferences

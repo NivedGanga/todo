@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'ToDo',
+      title: 'Tasks',
       theme: ThemeData.from(
           colorScheme: ColorScheme.dark(),
           useMaterial3: true,

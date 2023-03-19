@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:animation_list/animation_list.dart';
 import 'package:flutter/material.dart';
 import 'package:todo/infrastructure/list/list_repo.dart';

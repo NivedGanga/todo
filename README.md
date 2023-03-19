@@ -1,16 +1,20 @@
-# todo
+# Tasks
 
-A new Flutter project.
+Tasks is a todo app built with Flutter that uses Firebase as the backend for data storage and authentication.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- Add new tasks with a title and description.
+- Also can add tasks with date and name.
+- Mark tasks as completed or incomplete.
+- more than one task lists can be created.
+- Delete lists.
+- Delete tasks.
+- Login with email and password ,data back up is provided.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Requirements
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Flutter 2.5.3 or newer
+- Android Studio or Xcode
+- Firebase account

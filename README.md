@@ -1,16 +1,54 @@
-# todo
+# Tasks
 
-A new Flutter project.
+Tasks is a todo app built with Flutter that uses Firebase as the backend for data storage and authentication.
 
-## Getting Started
+# Features 
 
-This project is a starting point for a Flutter application.
+## Authentication
 
-A few resources to get you started if this is your first Flutter project:
+To use ## Tasks, users must sign up and log in using their email address and password. Tasks app uses Firebase Authentication to manage user authentication.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Adding Tasks
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+To add a new task, click the "+" button in the top right corner of the home screen. Enter the task title and description, date, time if want in the input fields and click the "Save" button to save the task
+
+## Adding Lists
+
+To add a new list, click the "+ New list" button in the appbar, top of the screen, Enter the title and press "Save" button.
+
+## Marking tasks as completed
+
+To mark a task as completed, tap on the check box curresponding to the task.
+
+## Marking tasks as incomplete
+
+To mark a task as incomplete, tap on the check box curresponding to the completed task to uncheck it.
+
+## Deleting tasks
+
+To delete a task, long press on the task then confirm to delete.
+
+## Deleting lists
+
+To delete a list, long press on the list title then confirm to delete.
+
+## Data Backup
+
+Tasks app uses Firebase Cloud Firestore as its backend, which allows for automatic data backups
+
+## Requirements
+
+- Flutter 2.5.3 or newer
+- Android Studio or Xcode
+- Firebase account
+
+## Dependecies Used
+
+- animation_list
+- checkmark
+- cloud_firestore
+- expandable
+- firebase_auth
+- firebase_core
+- mailer
+- shared_preferences
